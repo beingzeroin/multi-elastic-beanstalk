@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t trungtin/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t nguyentrungtin/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run trungtin/react-test npm test -- --coverage
+  - docker run nguyentrungtin/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t trungtin/multi-client ./client
-  - docker build -t trungtin/multi-nginx ./nginx
-  - docker build -t trungtin/multi-server ./server
-  - docker build -t trungtin/multi-worker ./worker
+  - docker build -t nguyentrungtin/multi-client ./client
+  - docker build -t nguyentrungtin/multi-nginx ./nginx
+  - docker build -t nguyentrungtin/multi-server ./server
+  - docker build -t nguyentrungtin/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push trungtin/multi-client
-  - docker push trungtin/multi-nginx
-  - docker push trungtin/multi-server
-  - docker push trungtin/multi-worker
+  - docker push nguyentrungtin/multi-client
+  - docker push nguyentrungtin/multi-nginx
+  - docker push nguyentrungtin/multi-server
+  - docker push nguyentrungtin/multi-worker
